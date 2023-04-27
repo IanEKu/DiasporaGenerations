@@ -337,7 +337,7 @@
 
     <div class="form">
       <p><span>Hai bro & sist,</span> kami rindu untuk mengenal kamu lebih lagi, mohon kesediaannya buat mengisi form berikut ini ya:</p>
-      <form action="" method="post">
+      <form action="" method="post" id="google-sheet" name="google-sheet">
         <div class="input-group">
           <p>Nama Lengkap: <span>*</span></p>
           <input type="text" name="fullname" id="fullname" required />
@@ -389,10 +389,6 @@
               <input type="radio" name="info" id="teman" />
               <label for="teman">Teman</label>
             </div>
-            <div class="option" style="margin-top: 2%">
-              <label for="lainnya">Lainnya: </label>
-              <input type="text" name="info" id="lainnya" />
-            </div>
           </div>
         </div>
         <div class="input-group">
@@ -407,12 +403,27 @@
           <p>Apa yang bisa kami doakan untuk kamu?:</p>
           <textarea name="prayer" id="prayer" cols="10" rows="3"></textarea>
         </div>
-        <button type="submit">Kirim</button>
+        <button type="submit" id="submit">Kirim</button>
       </form>
     </div>
 
     <footer>
       <a href="https://intagram.com/diasporagenerations" target="_blank"><i class="fa-brands fa-instagram"></i> diasporagenerations</a>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script>
+      const scriptURL = "https://script.google.com/macros/s/AKfycbyajVOIsynOV8Rl_eXHILicMliXK8OQNQMxpmsb6XFhyUUob39bouqBAHCJpzsZl-MEqw/exec";
+      const form = document.forms["google-sheet"];
+      const button = document.querySelector("#submit");
+
+      form.addEventListener("submit", (e) => {
+        button.disabled = true;
+        button.style.backgroundColor = "#a93d19";
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((res) => res.text())
+          .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
+      });
+    </script>
   </body>
 </html>
