@@ -222,12 +222,15 @@
         background-color: #131312;
         border: 1px solid #fe6a3a;
         color: white;
+        border-radius: 5px;
+        padding: 1% 0;
       }
 
       .form form textarea {
         background-color: #131312;
         color: white;
         border: 1px solid #fe6a3a;
+        border-radius: 5px;
       }
 
       .form form button {
@@ -353,20 +356,20 @@
         <div class="input-group">
           <p>Kamu sekarang sebagai apa nih?</p>
           <div class="radio-button">
-            <input type="radio" name="status" id="siswa" />
+            <input type="radio" name="status" id="siswa" value="siswa" />
             <label for="siswa">Siswa</label>
-            <input type="radio" name="status" id="mahasiswa" />
+            <input type="radio" name="status" id="mahasiswa" value="mahasiswa" />
             <label for="mahasiswa">Mahasiswa</label>
-            <input type="radio" name="status" id="karyawan" />
+            <input type="radio" name="status" id="karyawan" value="karyawan" />
             <label for="karyawan">Karyawan</label>
           </div>
         </div>
         <div class="input-group">
           <p>Apakah sudah bergereja?</p>
           <div class="radio-button">
-            <input type="radio" name="bergereja" id="sudah" />
+            <input type="radio" name="bergereja" id="sudah" value="sudah" />
             <label for="sudah">Sudah</label>
-            <input type="radio" name="bergereja" id="belum" />
+            <input type="radio" name="bergereja" id="belum" value="belum" />
             <label for="belum">Belum</label>
           </div>
         </div>
@@ -374,19 +377,19 @@
           <p>Dapat info ibadah ini darimana?</p>
           <div class="radio-button">
             <div class="option">
-              <input type="radio" name="info" id="poster" />
+              <input type="radio" name="info" id="poster" value="poster" />
               <label for="poster">Poster</label>
             </div>
             <div class="option">
-              <input type="radio" name="info" id="instagram" />
+              <input type="radio" name="info" id="instagram" value="instagram" />
               <label for="instagram">Instagram</label>
             </div>
             <div class="option">
-              <input type="radio" name="info" id="komunitas" />
+              <input type="radio" name="info" id="komunitas" value="komunitas" />
               <label for="komunitas">Komunitas</label>
             </div>
             <div class="option">
-              <input type="radio" name="info" id="teman" />
+              <input type="radio" name="info" id="teman" value="teman" />
               <label for="teman">Teman</label>
             </div>
           </div>
@@ -397,7 +400,7 @@
         </div>
         <div class="input-group">
           <p>Saran atau kritik kamu untuk D'Gen: <span>*</span></p>
-          <textarea name="testimony" id="testimony" cols="10" rows="3" required></textarea>
+          <textarea name="suggestion" id="suggestion" cols="10" rows="3" required></textarea>
         </div>
         <div class="input-group">
           <p>Apa yang bisa kami doakan untuk kamu?:</p>
