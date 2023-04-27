@@ -221,6 +221,7 @@
       .form form input {
         background-color: #131312;
         border: 1px solid #fe6a3a;
+        color: white;
       }
 
       .form form textarea {
@@ -340,6 +341,25 @@
         <div class="input-group">
           <p>Nama Lengkap: <span>*</span></p>
           <input type="text" name="fullname" id="fullname" required />
+        </div>
+        <div class="input-group">
+          <p>No. Telp atau WhatsApp: <span>*</span></p>
+          <input type="number" name="telp" id="telp" required />
+        </div>
+        <div class="input-group">
+          <p>Email:</p>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div class="input-group">
+          <p>Kamu sekarang sebagai apa nih?</p>
+          <div class="radio-button">
+            <input type="radio" name="status" id="siswa" />
+            <label for="siswa">Siswa</label>
+            <input type="radio" name="status" id="mahasiswa" />
+            <label for="mahasiswa">Mahasiswa</label>
+            <input type="radio" name="status" id="karyawan" />
+            <label for="karyawan">Karyawan</label>
+          </div>
         </div>
         <div class="input-group">
           <p>Apakah sudah bergereja?</p>
