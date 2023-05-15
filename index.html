@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <title>No Cross No Crown</title>
+    <title>Diaspora Generations</title>
     <style>
       @font-face {
         font-family: "Montserrat";
@@ -206,7 +206,7 @@
       .form-container .form-tabs {
         display: flex;
         flex-direction: row;
-        width: 25%;
+        width: 80%;
         justify-content: space-around;
       }
 
@@ -503,21 +503,18 @@
       const button = document.querySelector("#submit");
 
       formJB.addEventListener("submit", (e) => {
-        button.disabled = true;
-        button.style.backgroundColor = "#a93d19";
         e.preventDefault();
         fetch(scriptURL, { method: "POST", body: new FormData(formJB) })
-          .then((res) => res.text())
+          .then((res) => res.text()).then((_) => formJB.reset())
           .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
       });
 
       formJL.addEventListener("submit", (e) => {
-        button.disabled = true;
-        button.style.backgroundColor = "#a93d19";
         e.preventDefault();
         fetch(scriptURL, { method: "POST", body: new FormData(formJL) })
-          .then((res) => res.text())
+          .then((res) => res.text()).then((_) => formJB.reset())
           .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
+        formJL.reset();
       });
 
       function formBaru() {
