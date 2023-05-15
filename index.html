@@ -195,30 +195,65 @@
         font-size: small;
       }
 
-      .form {
-        padding: 0 5%;
+      .form-container {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        margin-top: 5%;
       }
 
-      .form span {
+      .form-container .form-tabs {
+        display: flex;
+        flex-direction: row;
+        width: 25%;
+        justify-content: space-around;
+      }
+
+      .form-container .form-tabs > div {
+        display: flex;
+        justify-content: center;
+        background-color: #fe6a3a;
+        width: 50%;
+        color: white;
+        border-radius: 20px 20px 0 0;
+        cursor: pointer;
+      }
+
+      .form-container .form-tabs #btn-jl {
+        background-color: #1f1f1f;
+      }
+
+      .formJL-container {
+        display: none;
+      }
+
+      .formJL-container, .formJB-container {
+        border: 2px solid #fe6a3a;
+        border-radius: 0 30px 30px 30px;
+        padding: 0 5% 2% 5%;
+      }
+
+      .formJL-container span, .formJB-container span {
         font-weight: bold;
       }
 
-      .form form {
+      .formJL-container form, .formJB-container form {
         display: flex;
         flex-direction: column;
       }
 
-      .form .input-group {
+      .formJL-container .input-group, .formJB-container .input-group {
         display: flex;
         flex-direction: column;
         margin-bottom: 2%;
       }
 
-      .form .input-group span {
+      .formJL-container .input-group span, .formJB-container .input-group span {
         color: rgb(255, 58, 58);
       }
 
-      .form form input {
+      .formJL-container form input, .formJB-container form input {
         background-color: #131312;
         border: 1px solid #fe6a3a;
         color: white;
@@ -226,14 +261,14 @@
         padding: 1% 0;
       }
 
-      .form form textarea {
+      .formJL-container form textarea, .formJB-container form textarea {
         background-color: #131312;
         color: white;
         border: 1px solid #fe6a3a;
         border-radius: 5px;
       }
 
-      .form form button {
+      .formJL-container form button, .formJB-container form button {
         background-color: #fe6a3a;
         border: none;
         color: white;
@@ -338,9 +373,15 @@
       </div>
     </div>
 
-    <div class="form">
+    <div class="form-container">
+    <div class="form-tabs">
+      <div id="btn-jb" onclick="formBaru()"><p>Jemaat Baru</p></div>
+      <div id="btn-jl" onclick="formLama()"><p>Jemaat Lama</p></div>
+    </div>
+    <div class="formJB-container">
       <p><span>Hai bro & sist,</span> kami rindu untuk mengenal kamu lebih lagi, mohon kesediaannya buat mengisi form berikut ini ya:</p>
-      <form action="" method="post" id="google-sheet" name="google-sheet">
+      <form action="" method="post" id="formJB" name="formJB">
+        <input type="hidden" name="form-type" value="jb">
         <div class="input-group">
           <p>Nama Lengkap: <span>*</span></p>
           <input type="text" name="fullname" id="fullname" required />
@@ -374,7 +415,7 @@
           </div>
         </div>
         <div class="input-group">
-          <p>Dapat info ibadah ini darimana?</p>
+          <p>Dapat info ibadah ini darimana/siapa?</p>
           <div class="radio-button">
             <div class="option">
               <input type="radio" name="info" id="poster" value="poster" />
@@ -405,6 +446,51 @@
         <button type="submit" id="submit">Kirim</button>
       </form>
     </div>
+    <div class="formJL-container">
+      <p><span>Hai bro & sist,</span> kritik dan masukan kamu sangat memberkati kami, kamu bisa isi form ini juga untuk permohonan doa:</p>
+      <form action="" method="post" id="formJL" name="formJL">
+        <input type="hidden" name="form-type" value="jl">
+        <div class="input-group">
+          <p>Nama Lengkap: <span>*</span></p>
+          <input type="text" name="fullname" id="fullname" required />
+        </div>
+        <div class="input-group">
+          <p>Dari Unity: <span>*</span></p>
+          <div class="radio-button">
+            <div class="option">
+              <input type="radio" name="asal-unity" id="antiokhia" value="antiokhia" />
+              <label for="antiokhia">Antiokhia</label>
+            </div>
+            <div class="option">
+              <input type="radio" name="asal-unity" id="bethlehem" value="bethlehem" />
+              <label for="bethlehem">Bethlehem</label>
+            </div>
+            <div class="option">
+              <input type="radio" name="asal-unity" id="efrata" value="efrata" />
+              <label for="efrata">Efrata</label>
+            </div>
+            <div class="option">
+              <input type="radio" name="asal-unity" id="filadelfia" value="filadelfia" />
+              <label for="filadelfia">Filadelfia</label>
+            </div>
+            <div class="option">
+              <input type="radio" name="asal-unity" id="getsemani" value="getsemani" />
+              <label for="getsemani">Getsemani</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <p>Saran atau kritik kamu untuk D'Gen:</p>
+          <textarea name="suggestion" id="suggestion" cols="10" rows="3"></textarea>
+        </div>
+        <div class="input-group">
+          <p>Apa yang bisa kami doakan untuk kamu?:</p>
+          <textarea name="prayer" id="prayer" cols="10" rows="3"></textarea>
+        </div>
+        <button type="submit" id="submit">Kirim</button>
+      </form>
+    </div>
+    </div>
 
     <footer>
       <a href="https://intagram.com/diasporagenerations" target="_blank"><i class="fa-brands fa-instagram"></i> diasporagenerations</a>
@@ -412,17 +498,43 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script>
       const scriptURL = "https://script.google.com/macros/s/AKfycbyajVOIsynOV8Rl_eXHILicMliXK8OQNQMxpmsb6XFhyUUob39bouqBAHCJpzsZl-MEqw/exec";
-      const form = document.forms["google-sheet"];
+      const formJB = document.forms["formJB"];
+      const formJL = document.forms["formJL"];
       const button = document.querySelector("#submit");
 
-      form.addEventListener("submit", (e) => {
+      formJB.addEventListener("submit", (e) => {
         button.disabled = true;
         button.style.backgroundColor = "#a93d19";
         e.preventDefault();
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        fetch(scriptURL, { method: "POST", body: new FormData(formJB) })
           .then((res) => res.text())
           .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
       });
+
+      formJL.addEventListener("submit", (e) => {
+        button.disabled = true;
+        button.style.backgroundColor = "#a93d19";
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(formJL) })
+          .then((res) => res.text())
+          .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
+      });
+
+      function formBaru() {
+        document.querySelector('.formJB-container').style.display = "block";
+        document.getElementById('btn-jb').style.backgroundColor = "#fe6a3a";
+
+        document.querySelector('.formJL-container').style.display = "none";
+        document.getElementById('btn-jl').style.backgroundColor = "#1f1f1f";
+      }
+      
+      function formLama() {
+        document.querySelector('.formJB-container').style.display = "none";
+        document.getElementById('btn-jb').style.backgroundColor = "#1f1f1f";
+        
+        document.querySelector('.formJL-container').style.display = "block";
+        document.getElementById('btn-jl').style.backgroundColor = "#fe6a3a";
+      }
     </script>
   </body>
 </html>
