@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <title>Diaspora Generations</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
       @font-face {
         font-family: "Montserrat";
@@ -16,6 +17,10 @@
         font-family: "Montserrat";
         src: url(./Font/Montserrat-Bold.ttf);
         font-weight: bold;
+      }
+
+      * {
+        font-family: "Montserrat";
       }
 
       body {
@@ -52,9 +57,28 @@
         justify-content: center;
         height: 40vh;
         margin: 0;
+        position: relative;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
         background: url(https://lh3.googleusercontent.com/z0SezGmasD3b9RV4ajMvzFmoXBnOF4i3pwfWTHHHQrtzmpYswKiPMo5ZELwn7ILXAeYFU_lzHV4Wbt2hSGpiByopHX90GPUBnXVoh8STh6p7kPTFeX_hvQ6bPG-CDdvkOsKJSnObZQ=w2400);
         background-size: cover;
         background-position: center;
+        filter: brightness(75%);
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background-image: linear-gradient(180deg, transparent, #131312);
       }
 
       header .title {
@@ -90,7 +114,7 @@
         width: 45%;
         height: 30%;
         z-index: -1;
-        opacity: 0.8;
+        opacity: 0.7;
         margin-left: 55%;
         margin-right: 0;
         background-repeat: no-repeat;
@@ -102,7 +126,7 @@
         width: 60%;
         height: 50%;
         z-index: -1;
-        opacity: 0.8;
+        opacity: 0.7;
         margin-top: 10vh;
         margin-left: -80%;
         margin-bottom: 0;
@@ -305,8 +329,8 @@
     <header>
       <div class="head-bg"></div>
       <div class="title">
-        <h1>Selamat Paskah</h1>
-        <p>No Cross No Crown</p>
+        <h1>Diaspora Generations</h1>
+        <p>Next Generation of Diaspora</p>
       </div>
     </header>
 
@@ -314,7 +338,7 @@
       <div class="blobs"></div>
       <div class="blobs2"></div>
       <img class="logo" src="https://lh3.googleusercontent.com/pw/AJFCJaWSi03BvhB8Wv0ZkbNjNY0OLQqLRvwkCmo0o_2Lg9PAudG_oFNU_5l-Hx7L1xun7MWEuKsQgfdURJXeN8vaftQ36xGNbuV7pxqD0XMfuKArtprcfgs=w2400" alt="Diaspora Generations" />
-      <h2 align="center">Diaspora Generations</h2>
+      <h3 align="center">Apa itu Diaspora Generations?</h3>
       <p>
         Diaspora Generations adalah komunitas anak muda gereja GBI Diaspora Sejahtera Caring Ministries, Kota Malang. Tujuan kami adalah dimuridkan dan memuridkan dalam komunitas anak Tuhan yang benar dan yang berpusatkan pada Injil
         Kristus.
@@ -436,11 +460,7 @@
           </div>
         </div>
         <div class="input-group">
-          <p>Saran atau kritik kamu untuk D'Gen: <span>*</span></p>
-          <textarea name="suggestion" id="suggestion" cols="10" rows="3" required></textarea>
-        </div>
-        <div class="input-group">
-          <p>Apa yang bisa kami doakan untuk kamu?:</p>
+          <p>Apakah ada yang bisa kami doakan untuk kamu?:</p>
           <textarea name="prayer" id="prayer" cols="10" rows="3"></textarea>
         </div>
         <button type="submit" id="submit">Kirim</button>
@@ -496,8 +516,9 @@
       <a href="https://intagram.com/diasporagenerations" target="_blank"><i class="fa-brands fa-instagram"></i> diasporagenerations</a>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="./coneftti.js"></script>
     <script>
-      const scriptURL = "https://script.google.com/macros/s/AKfycbyajVOIsynOV8Rl_eXHILicMliXK8OQNQMxpmsb6XFhyUUob39bouqBAHCJpzsZl-MEqw/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxNvGOBH_Y_GK0Ghx7J8UGwf6WLVmUAEOtt9S221uHFgHCyhDLAgKpKNl2fzWQksxhGyw/exec";
       const formJB = document.forms["formJB"];
       const formJL = document.forms["formJL"];
       const button = document.querySelector("#submit");
@@ -506,14 +527,40 @@
         e.preventDefault();
         fetch(scriptURL, { method: "POST", body: new FormData(formJB) })
           .then((res) => res.text()).then((_) => formJB.reset())
-          .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
+          .then((data) => {
+            Swal.fire({
+                title: 'Yay!',
+                text: 'Data kamu sudah kami terima',
+                icon: 'success',
+                confirmButtonText: 'Okay!'
+            });
+            setTimeout(function() {
+              confetti.start();
+            }, 300)
+            setTimeout(function() {
+              confetti.stop();
+            }, 3000)
+          });
       });
 
       formJL.addEventListener("submit", (e) => {
         e.preventDefault();
         fetch(scriptURL, { method: "POST", body: new FormData(formJL) })
           .then((res) => res.text()).then((_) => formJB.reset())
-          .then((data) => alert("Terima kasih sudah mengisi form ini, jawabanmu sudah kami rekam"));
+          .then((data) => {
+            Swal.fire({
+                title: 'Yay!',
+                text: 'Masukan kamu sudah kami terima',
+                icon: 'success',
+                confirmButtonText: 'Okay!'
+            });
+            setTimeout(function() {
+              confetti.start();
+            }, 300)
+            setTimeout(function() {
+              confetti.stop();
+            }, 3000)
+          });
         formJL.reset();
       });
 
