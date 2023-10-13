@@ -215,11 +215,7 @@
         border-radius: 20px 0 0 0;
       }
 
-      .contact-btn > * {
-        color: white;
-      }
-
-      .unity .card .contact-btn {
+      .unity .card .contactdt-btn {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -229,6 +225,10 @@
         width: 115%;
         margin: 2px 0;
         font-size: small;
+        outline: none;
+        border: none;
+        color: white;
+        cursor: pointer;
       }
 
       .form-container {
@@ -335,6 +335,10 @@
       footer i {
         color: white;
       }
+      
+      .contact-list {
+        list-style-type: none;
+      }
     </style>
   </head>
   <body>
@@ -371,7 +375,7 @@
           <h3>Antiokhia</h3>
           <div class="text">
             <p class="leaders">Kezia</p>
-            <a class="contact-btn" href="https://wa.me/6289515961214" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0895 1596 1214</a>
+            <button class="contactdt-btn" onclick="return contactPerson('Antiokhia')">Lihat Contact Person</button>
           </div>
         </div>
         <div class="card" id="bethlehem">
@@ -379,7 +383,7 @@
           <h3>Bethlehem</h3>
           <div class="text">
             <p class="leaders">Grace</p>
-            <a class="contact-btn" href="https://wa.me/6282234814818" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0822 3481 4818</a>
+            <button class="contactdt-btn" onclick="return contactPerson('Bethlehem')">Lihat Contact Person</button>
           </div>
         </div>
         <div class="card" id="efrata">
@@ -387,7 +391,7 @@
           <h3>Efrata</h3>
           <div class="text">
             <p class="leaders">Naomi</p>
-            <a class="contact-btn" href="https://wa.me/6283833842921" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0838 3384 2921</a>
+            <button class="contactdt-btn" onclick="return contactPerson('Efrata')">Lihat Contact Person</button>
           </div>
         </div>
         <div class="card" id="getsemani">
@@ -395,7 +399,7 @@
           <h3>Getsemani</h3>
           <div class="text">
             <p class="leaders">Michele</p>
-            <a class="contact-btn" href="https://wa.me/6282245550076" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0822 4555 0076</a>
+            <button class="contactdt-btn" onclick="return contactPerson('Getsemani')">Lihat Contact Person</button>
           </div>
         </div>
         <div class="card" id="Filadelfia">
@@ -403,9 +407,12 @@
           <h3>Filadelfia</h3>
           <div class="text">
             <p class="leaders">Nathan</p>
-            <a class="contact-btn" href="https://wa.me/62895397638601" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0895 3976 38601</a>
+            <button class="contactdt-btn" onclick="return contactPerson('Filadelfia')">Lihat Contact Person</button>
           </div>
         </div>
+      </div>
+      <div class="content">
+        <p>Atau, buat kamu yang mau ikut D'Gen tapi sendirian bisa hubungi <b style="cursor: pointer;" onclick="return contactPerson('Volunteer')">nomer berikut</b> untuk menemani kamu ibadah di Diaspora Generations</p>
       </div>
     </div>
 
@@ -529,6 +536,7 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="./coneftti.js"></script>
+    <script src="./data.js"></script>
     <script>
       const scriptURL = "https://script.google.com/macros/s/AKfycbxNvGOBH_Y_GK0Ghx7J8UGwf6WLVmUAEOtt9S221uHFgHCyhDLAgKpKNl2fzWQksxhGyw/exec";
       const formJB = document.forms["formJB"];
@@ -590,6 +598,19 @@
         
         document.querySelector('.formJL-container').style.display = "block";
         document.getElementById('btn-jl').style.backgroundColor = "#fe6a3a";
+      }
+
+      function contactPerson(unity) {
+        Swal.fire({
+            title: unity,
+            background: '#000',
+            color: '#fff',
+            html: `<ul class='contact-list'>${contact[unity].map((contact, index) => `<li class='contactperson-item'>${contact.name}: <a href='https://wa.me/${contact.phone.replace(/0/,'62')}' target='_blank'>${contact.phone}</a></li>`).join('')}</ul>`,
+            imageUrl: images[unity],
+            imageWidth: 400,
+            imageHeight: unity == 'Volunteer' ? 100 : 300,
+            imageAlt: unity,
+        });
       }
     </script>
   </body>
