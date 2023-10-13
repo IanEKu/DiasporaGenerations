@@ -605,7 +605,7 @@
       function contactPerson(unity) {
         Swal.fire({
             title: unity,
-            background: '#000',
+            background: '#131312',
             color: '#fff',
             html: `<ul class='contact-list'>${contact[unity].map((contact, index) => `<li class='contactperson-item'>${contact.name}: <a href='https://wa.me/${contact.phone.replace(/0/,'62')}' target='_blank'>${contact.phone}</a></li>`).join('')}</ul>`,
             imageUrl: images[unity],
