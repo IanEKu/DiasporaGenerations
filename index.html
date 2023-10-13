@@ -545,9 +545,11 @@
 
       formJB.addEventListener("submit", (e) => {
         e.preventDefault();
+        document.getElementById('submit').disabled = true;
         fetch(scriptURL, { method: "POST", body: new FormData(formJB) })
           .then((res) => res.text()).then((_) => formJB.reset())
           .then((data) => {
+          document.getElementById('submit').disabled = false;
             Swal.fire({
                 title: 'Yay!',
                 text: 'Data kamu sudah kami terima',
